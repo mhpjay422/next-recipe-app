@@ -1,12 +1,12 @@
 /* eslint-disable import/no-anonymous-default-export */
 export default {
-  name: "chef",
-  title: "Chef",
+  name: "ingredient",
+  title: "Ingredient",
   type: "document",
   fields: [
     {
       name: "name",
-      title: "Chef's Name",
+      title: "Ingredient Name",
       type: "string",
     },
     {
@@ -18,17 +18,9 @@ export default {
       },
     },
     {
-      name: "bio",
-      title: "Bio",
-      type: "array",
-      of: [
-        {
-          title: "Block",
-          type: "block",
-          styles: [{ title: "Normal", value: "normal" }],
-          lists: [],
-        },
-      ],
+      name: "notes",
+      title: "Notes",
+      type: "text",
     },
   ],
 };
