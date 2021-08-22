@@ -11,8 +11,8 @@ function MyApp({ Component, pageProps }) {
           </Link>
         </div>
       </nav>
-      <main>
-        <Component {...pageProps} />;
+      <main className="main">
+        <Component {...pageProps} />
       </main>
     </>
   );
