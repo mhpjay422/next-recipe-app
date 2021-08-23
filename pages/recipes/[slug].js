@@ -29,17 +29,16 @@ const recipeQuery = `*[_type == "recipe" && slug.current == $slug][0]{
 }`;
 
 export default function OneRecipe({ data, preview }) {
+  if (!data) {
+    return <div>Loading...</div>;
+  }
   const { data: recipe } = usePreviewSubscription(recipeQuery, {
     params: { slug: data.recipe?.slug.current },
     initialData: data,
     enabled: preview,
   });
   const [likes, setLikes] = useState(data?.recipe?.likes);
-  const router = useRouter();
 
-  if (router.isFallback) {
-    return <div>Loading...</div>;
-  }
   const addLike = async () => {
     const res = await fetch("/api/handle-like", {
       method: "POST",
@@ -61,7 +60,7 @@ export default function OneRecipe({ data, preview }) {
         <img src={urlFor(recipe?.mainImage).url()} alt={recipe.name} />
         <div className="breakdown">
           <ul className="ingredients">
-            {recipe?.ingredient?.map((ingredient) => (
+            {recipe.ingredient?.map((ingredient) => (
               <li key={ingredient.key} className="ingredient">
                 {ingredient?.wholeNumber}
                 {ingredient?.fraction}
