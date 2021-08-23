@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable jsx-a11y/alt-text */
 import { useState } from "react";
+import { useRouter } from "next/router";
 import {
   sanityClient,
   urlFor,
@@ -34,6 +35,11 @@ export default function OneRecipe({ data, preview }) {
     enabled: preview,
   });
   const [likes, setLikes] = useState(data?.recipe?.likes);
+  const router = useRouter();
+
+  if (router.isFallback) {
+    return <div>Loading...</div>;
+  }
   const addLike = async () => {
     const res = await fetch("/api/handle-like", {
       method: "POST",
