@@ -61,7 +61,7 @@ export default function OneRecipe({ data, preview }) {
         <img src={urlFor(recipe?.mainImage).url()} alt={recipe.name} />
         <div className="breakdown">
           <ul className="ingredients">
-            {recipe.ingredient?.map((ingredient) => (
+            {recipe?.ingredient?.map((ingredient) => (
               <li key={ingredient.key} className="ingredient">
                 {ingredient?.wholeNumber}
                 {ingredient?.fraction}
