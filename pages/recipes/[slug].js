@@ -30,7 +30,7 @@ const recipeQuery = `*[_type == "recipe" && slug.current == $slug][0]{
 
 export default function OneRecipe({ data, preview }) {
   const { data: recipe } = usePreviewSubscription(recipeQuery, {
-    params: { slug: data.recipe?.slug.current },
+    params: { slug: data?.recipe?.slug.current },
     initialData: data,
     enabled: preview,
   });
@@ -60,7 +60,7 @@ export default function OneRecipe({ data, preview }) {
         <img src={urlFor(recipe?.mainImage).url()} alt={recipe.name} />
         <div className="breakdown">
           <ul className="ingredients">
-            {recipe.ingredient?.map((ingredient) => (
+            {recipe?.ingredient?.map((ingredient) => (
               <li key={ingredient.key} className="ingredient">
                 {ingredient?.wholeNumber}
                 {ingredient?.fraction}
