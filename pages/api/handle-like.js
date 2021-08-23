@@ -13,5 +13,5 @@ export default async function likeBottonHandler(req, res) {
     .commit()
     .catch((error) => console.log(error));
 
-  res.status(200).JSON({ likes: data.likes });
+  res.status(200).json({ likes: data.likes });
 }
